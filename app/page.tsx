@@ -1,9 +1,26 @@
 "use client";
 
+import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
   const router = useRouter();
+
+  useEffect(() => {
+    const deleteOldMatches = async () => {
+      try{
+        await supabase
+          .from('love_matches')
+          .delete()
+          .lt('created_at', new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString());
+
+      }catch(error){
+        console.error("Error while deleting older messages:", error);
+      }
+    }
+    deleteOldMatches();
+  }, [])
 
   const handleStartPranking = () => {
     router.push("/generate");  
