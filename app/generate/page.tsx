@@ -1,30 +1,57 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import { supabase } from "@/lib/supabase";
 
-type TableRow = {
-  id: number;
-  name: string;
-  score: number;
+type TableData = {
+  id: string;
+  user1: string;
+  user2: string;
 };
 
 export default function Generate() {
+  // const router = useRouter();
+
   const [generatedLink, setGeneratedLink] = useState("");
-  const router = useRouter();
+  const [tableData, setTableData] = useState<TableData[]>([]);
+  const [existingId, setExistingId] = useState<string | null>(null);
   
-  const handleGenerateLink = () => {
-    const id = nanoid(15); 
+  useEffect(() => {
+    const nanoid = localStorage.getItem("love-calculator-nanoid");
+    if(nanoid){
+      setExistingId(nanoid);
+      
+      const fetchData = async () => {
+        try{
+          const { data } = await supabase
+            .from("love_matches")
+            .select("*")
+            .eq("nanoid", nanoid)
+            .order("created_at", { ascending: false });
+
+          if(data && data.length > 0){
+            setTableData(data);
+          }
+        }catch(error){
+          console.error("Error fetching existing data:", error);
+        }
+      }
+      fetchData();
+    }
+  }, []);
+  
+  const handleGenerateLink = () => {    
+    if(existingId){
+      setGeneratedLink(`http://localhost:3000/calculate?id=${existingId}`);
+      return;
+    }
+
+    const id = nanoid(15);
+    localStorage.setItem("love-calculator-nanoid", id);
     setGeneratedLink(`http://localhost:3000/calculate?id=${id}`);
     // router.push(`/calculate?id=${id}`);
   };
-
-  const sampleData: TableRow[] = [
-    { id: 1, name: 'Alice & Bob', score: 82 },
-    { id: 2, name: 'Romeo & Juliet', score: 96 },
-    { id: 3, name: 'Tristan & Isolde', score: 78 },
-    { id: 4, name: 'Harry & Sally', score: 88 },
-  ];
 
   return (
     <div className="relative z-10 flex flex-col items-center text-center max-w-3xl">
@@ -64,14 +91,14 @@ export default function Generate() {
             </tr>
           </thead>
           <tbody>
-            {sampleData.map((row) => (
+            {tableData.map((row, index) => (
               <tr
                 key={row.id}
                 className="border-b bg-rose-400 backdrop-blur-md"
               >
-                <td className="py-3 px-4 border-r border-white">{row.id}</td>
-                <td className="py-3 px-4 border-r border-white">{row.name}</td>
-                <td className="py-3 px-4">{row.score}%</td>
+                <td className="py-3 px-4 border-r border-white">{index + 1}</td>
+                <td className="py-3 px-4 border-r border-white">{row.user1}</td>
+                <td className="py-3 px-4">{row.user2}</td>
               </tr>
             ))}
           </tbody>

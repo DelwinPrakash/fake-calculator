@@ -1,5 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
+import { supabase } from "@/lib/supabase";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -13,17 +14,31 @@ export default function Calculate() {
     const [partnerName, setPartnerName] = useState("");
     const [error, setError] = useState("");
 
-    const handleCalculate = () => {
+    const handleCalculate = async () => {
         setError("");
         if (!yourName || !partnerName) {
             setError("Both names are required.");
             return;
         }
-        setLoading(true);
-        setTimeout(() => {
-            router.push(`/pranked?name=${encodeURIComponent(yourName)}&partner=${encodeURIComponent(partnerName)}`)
-            setLoading(false);
-        }, 10000);
+        try{
+            setLoading(true);
+            
+            await supabase.from("love_matches").insert({
+                nanoid: id,
+                user1: yourName,
+                user2: partnerName
+            });
+
+            setTimeout(() => {
+                router.push(`/pranked?name=${encodeURIComponent(yourName)}&partner=${encodeURIComponent(partnerName)}`)
+                setLoading(false);
+            }, 10000);
+        
+        }catch(error){
+            console.error("Error during calculation:", error);
+            setError("An error occurred while calculating. Please try again.");
+            return;
+        }
     };
 
     if(loading){
