@@ -32,7 +32,7 @@ export default function Generate() {
       </button>
 
       {true && (
-        <div className="mt-8 p-4 bg-none backdrop-blur-3xl border border-pink-300 rounded-lg shadow-sm w-full">
+        <div className="mt-8 p-4 bg-none backdrop-blur-3xl border border-pink-300 rounded-lg shadow-md w-full">
           <p className="text-gray-700 font-medium mb-2">Your Prank Link:</p>
           <input
             type="text"

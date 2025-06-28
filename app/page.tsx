@@ -24,7 +24,7 @@ export default function Home() {
 
       <button
         onClick={handleStartPranking}
-        className="px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow-md hover:bg-pink-700 transition duration-300 ease-in-out active:scale-95 active:shadow-inner"
+        className="px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg shadow-md hover:bg-pink-700 transition duration-300 ease-in-out active:scale-95 active:shadow-inner cursor-pointer"
       >
         🎯 Start Pranking
       </button>

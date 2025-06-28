@@ -27,7 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="relative flex h-dvh justify-center bg-gradient-to-br from-pink-300 to-rose-300 p-2 overflow-hidden">
+        <main className="relative flex h-dvh justify-center bg-gradient-to-br from-pink-200 to-rose-300 p-2 overflow-hidden">
           <div className="absolute w-full h-full flex items-center justify-center pointer-events-none">
             <div className="relative w-80 h-80 animate-pulse bg-none">
               <div className="absolute w-80 h-80 top-0 left-20 bg-pink-400 rounded-full blur-2xl opacity-50" />
