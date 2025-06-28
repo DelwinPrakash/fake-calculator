@@ -12,7 +12,7 @@ export default function Pranked(){
     };
 
     return (
-        <div className="relative z-10 h-dvh flex flex-col items-center justify-center text-center max-w-3xl">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold text-rose-700 mb-6">
                 😂 You've Been Pranked!
             </h1>

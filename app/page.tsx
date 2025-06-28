@@ -10,7 +10,7 @@ export default function Home() {
   }
 
   return (
-    <div className="relative z-10 h-dvh flex flex-col items-center justify-center text-center max-w-3xl">
+    <div className="relative z-10 h-full flex flex-col items-center justify-center text-center max-w-3xl">
       <h1 className="text-4xl md:text-5xl font-bold text-pink-700 mb-6">
         💘 Welcome to the Ultimate Love Calculator Prank!
       </h1>
