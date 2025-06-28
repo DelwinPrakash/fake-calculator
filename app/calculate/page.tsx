@@ -1,10 +1,13 @@
 "use client";
 import Loading from "@/components/Loading";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function Calculate() {
     const router = useRouter()
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id");
+
     const [loading, setLoading] = useState(false);
     const [yourName, setYourName] = useState("");
     const [partnerName, setPartnerName] = useState("");
@@ -28,7 +31,7 @@ export default function Calculate() {
     }
 
     return (
-        <div className="relative z-10 h-dvh flex flex-col items-center text-center max-w-3xl">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold text-rose-700 mb-6">
                 💖 The Official Love Compatibility Test 💖
             </h1>
