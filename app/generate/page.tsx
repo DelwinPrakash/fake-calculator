@@ -43,14 +43,14 @@ export default function Generate() {
   
   const handleGenerateLink = () => {
     if(existingId){
-      setGeneratedLink(`http://localhost:3000/calculate?id=${existingId}`);
+      setGeneratedLink(`https://love-calculator.vercel.app/calculate?id=${existingId}`);
       return;
     }
 
     const id = nanoid(15);
     localStorage.setItem("love-calculator-nanoid", id);
     setExistingId(id);
-    setGeneratedLink(`http://localhost:3000/calculate?id=${id}`);
+    setGeneratedLink(`https://love-calculator.vercel.app/calculate?id=${id}`);
     
     increment_user_count();
     // router.push(`/calculate?id=${id}`);
