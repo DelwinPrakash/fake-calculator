@@ -41,7 +41,7 @@ export default function Generate() {
     }
   }, []);
   
-  const handleGenerateLink = () => {    
+  const handleGenerateLink = () => {
     if(existingId){
       setGeneratedLink(`http://localhost:3000/calculate?id=${existingId}`);
       return;
@@ -49,9 +49,20 @@ export default function Generate() {
 
     const id = nanoid(15);
     localStorage.setItem("love-calculator-nanoid", id);
+    setExistingId(id);
     setGeneratedLink(`http://localhost:3000/calculate?id=${id}`);
+    
+    increment_user_count();
     // router.push(`/calculate?id=${id}`);
   };
+
+  const increment_user_count = async () => {
+    try{
+      await supabase.rpc('increment_user_count');
+    }catch(error){
+      console.error("Error generating link:", error);
+    }
+  }
 
   return (
     <div className="relative z-10 flex flex-col items-center text-center max-w-3xl">
@@ -70,40 +81,40 @@ export default function Generate() {
         🎁 Generate My Link
       </button>
 
-      {true && (
-        <div className="mt-8 p-4 bg-none backdrop-blur-3xl border border-pink-300 rounded-lg shadow-md w-full">
-          <p className="text-gray-700 font-medium mb-2">Your Prank Link (click to copy):</p>
-          <div className="py-2 min-h-11 border border-gray-200 rounded text-gray-600 cursor-pointer shadow-md transition duration-300 ease-in-out active:scale-95 active:shadow-inner" onClick={() => navigator.clipboard.writeText(generatedLink)}>{generatedLink}</div>
-        </div>
-      )}
+      <div className="mt-8 p-4 bg-none backdrop-blur-3xl border border-pink-300 rounded-lg shadow-md w-full">
+        <p className="text-gray-700 font-medium mb-2">Your Prank Link (click to copy):</p>
+        <div className="py-2 min-h-11 border border-gray-200 rounded text-gray-600 cursor-pointer shadow-md transition duration-300 ease-in-out active:scale-95 active:shadow-inner" onClick={() => navigator.clipboard.writeText(generatedLink)}>{generatedLink}</div>
+      </div>
 
+      {tableData.length > 0 &&
+        <div className="overflow-x-auto w-full mt-4">
+          <table className="min-w-full shadow-md rounded-lg overflow-hidden">
+            <thead className="bg-pink-600 text-white text-center">
+              <tr>
+                <th className="py-3 px-4">ID</th>
+                <th className="py-3 px-4">Name</th>
+                <th className="py-3 px-4">Partner name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((row, index) => (
+                <tr
+                  key={row.id}
+                  className="border-b bg-rose-400 backdrop-blur-md"
+                >
+                  <td className="py-3 px-4 border-r border-white">{index + 1}</td>
+                  <td className="py-3 px-4 border-r border-white">{row.user1}</td>
+                  <td className="py-3 px-4">{row.user2}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      }
+      
       <p className="mt-6 text-sm text-gray-500 max-w-md px-3">
         Don’t worry, we’re not storing anything forever, everything will be auto deleted after 2 days — this is just for laughs!
       </p>
-
-      <div className="overflow-x-auto w-full mt-4">
-        <table className="min-w-full shadow-md rounded-lg overflow-hidden">
-          <thead className="bg-pink-600 text-white text-center">
-            <tr>
-              <th className="py-3 px-4">ID</th>
-              <th className="py-3 px-4">Name</th>
-              <th className="py-3 px-4">Partner name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((row, index) => (
-              <tr
-                key={row.id}
-                className="border-b bg-rose-400 backdrop-blur-md"
-              >
-                <td className="py-3 px-4 border-r border-white">{index + 1}</td>
-                <td className="py-3 px-4 border-r border-white">{row.user1}</td>
-                <td className="py-3 px-4">{row.user2}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 }
