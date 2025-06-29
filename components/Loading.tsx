@@ -11,7 +11,7 @@ const Loading: React.FC = () => {
       if (!isMounted) return;
 
       const increment = Math.floor(Math.random() * 5) + 1;
-      const delay = Math.floor(Math.random() * 500) + 500;
+      const delay = Math.floor(Math.random() * 500) + 100;
 
       setTimeout(() => {
         setProgress(prev => {
