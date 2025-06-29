@@ -10,8 +10,8 @@ const Loading: React.FC = () => {
     const updateProgress = () => {
       if (!isMounted) return;
 
-      const increment = Math.floor(Math.random() * 3) + 1;
-      const delay = Math.floor(Math.random() * 500) + 1000;
+      const increment = Math.floor(Math.random() * 5) + 1;
+      const delay = Math.floor(Math.random() * 500) + 500;
 
       setTimeout(() => {
         setProgress(prev => {
