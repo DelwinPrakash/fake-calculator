@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { supabase } from "@/lib/supabase";
@@ -71,7 +71,7 @@ export default function Generate() {
       </h1>
 
       <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-8">
-        You'll get a unique link—just copy it and send it to your target, you can see the details back here!
+        You&apos;ll get a unique link—just copy it and send it to your target, you can see the details back here!
       </p>
 
       <button
@@ -113,7 +113,7 @@ export default function Generate() {
       }
       
       <p className="mt-6 text-sm text-gray-500 max-w-md px-3">
-        Don’t worry, we’re not storing anything forever, everything will be auto deleted after 2 days — this is just for laughs!
+        Don&apos;t worry, we&apos;re not storing anything forever, everything will be auto deleted after 2 days — this is just for laughs!
       </p>
     </div>
   );

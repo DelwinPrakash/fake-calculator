@@ -33,7 +33,7 @@ export default function Home() {
       </h1>
 
       <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-10">
-        Think your friends are head over heels in love? Let's put that to the test... 
+        Think your friends are head over heels in love? Let&apos;s put that to the test... 
         or at least make them think we are! 😈
         <br />
         Generate a personalized link, send it to your friend, and watch them fall into the prank trap.

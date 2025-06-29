@@ -8,10 +8,10 @@ export default function About(){
                     </h1>
         
                     <p className="text-lg mb-4">
-                        This page isn’t linked anywhere obvious, I’m glad you found it.
+                        This page isn&apos;t linked anywhere obvious, I&apos;m glad you found it.
                     </p>
                     <p className="text-lg mb-6">
-                        Since you’re here, let's connect!😉
+                        Since you&apos;re here, let&apos;s connect!😉
                     </p>
 
                     <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-10 items-center justify-center">

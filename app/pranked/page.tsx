@@ -14,11 +14,11 @@ export default function Pranked(){
     return (
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-center max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold text-rose-700 mb-6">
-                😂 You've Been Pranked!
+                😂 You&apos;ve Been Pranked!
             </h1>
 
             <p className="text-lg md:text-xl text-gray-700 max-w-xl mb-4">
-                Gotcha! There’s no real love calculator here...
+                Gotcha! There&apos;s no real love calculator here...
             </p>
 
             <p className="text-md md:text-lg text-gray-600 max-w-xl mb-8">
@@ -27,7 +27,7 @@ export default function Pranked(){
 
             <div className="bg-none border border-pink-100 rounded-lg p-4 mb-6 w-full max-w-sm text-gray-800 backdrop-blur-md shadow-md">
                 <p><strong>Your Name:</strong> {name}</p>
-                <p><strong>Partner’s Name:</strong> {partner}</p>
+                <p><strong>Partner&apos;s Name:</strong> {partner}</p>
             </div>
 
             <p className="text-gray-700 mb-8">
